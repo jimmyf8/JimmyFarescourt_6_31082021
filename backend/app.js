@@ -1,5 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
+// importer helmet
+const helmet = require("helmet");
 const app = express();
 //Rendre les données du corps de la requête exploitable
 const bodyParser = require('body-parser');
@@ -8,7 +10,8 @@ const userRoutes = require('./routes/user');
 const path = require('path');
 // charger le fichier d'en pour le mettre dans process
 require('dotenv').config();
-
+//helmet  est un middleware de style Connect pour plus de sécurité global
+app.use(helmet());
 //accéder à notre API depuis n'importe quelle origine && envoyer des requêtes avec les méthodes mentionnées
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
